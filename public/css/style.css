@@ -1,0 +1,30 @@
+/* Transition fade-in */
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Styles pour les articles (cards) */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet hover sur les articles */
+.card:hover {
+    transform: scale(1.05); /* Agrandissement léger */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+}
+
+
+.card-img-top {
+    max-height: 200px;
+    object-fit: cover;
+}
