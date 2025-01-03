@@ -10,11 +10,49 @@ async function fetchLatestNews() {
     }
 }
 
+
+
 // TODO: Question 1 - Compléter la fonction displayNews
 function displayNews(news) {
     const container = document.getElementById('news-container');
-    // Utilisez Bootstrap pour créer des cards pour chaque article
+    container.innerHTML = ''; // Réinitialiser le contenu
+
+    // Vérifier si des articles sont disponibles
+    if (news.length === 0) {
+        container.innerHTML = '<p class="text-center">Aucun article disponible.</p>';
+        return;
+    }
+
+    // Parcourir la liste des articles
+    news.forEach((article) => {
+        // Création d'une card Bootstrap pour chaque article
+        const card = `
+            <div class="col-md-6 mb-4">
+                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded fade-in">
+                    <img src="${article.thumbnail || 'https://via.placeholder.com/150'}" 
+                         class="card-img-top" 
+                         alt="${article.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${article.title}</h5>
+                        <p class="card-text">${article.excerpt || article.body.slice(0, 100)}...</p>
+                        <button class="btn btn-primary btn-sm" onclick="viewArticle(${article.id})">
+                            Lire plus
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Ajouter la card au conteneur
+        container.innerHTML += card;
+    });
 }
+
+// Fonction pour afficher les détails d'un article
+function viewArticle(articleId) {
+    alert(`Détails de l'article ID : ${articleId}`);
+}
+
 
 // TODO: Question 2 - Créer une fonction pour gérer les erreurs
 function showError(message) {
