@@ -54,10 +54,27 @@ function viewArticle(articleId) {
 }
 
 
-// TODO: Question 2 - Créer une fonction pour gérer les erreurs
 function showError(message) {
-    // Afficher un message d'erreur avec Bootstrap
+    // Crée un élément de message d'erreur
+    const errorAlert = document.createElement('div');
+    errorAlert.className = 'alert alert-danger alert-dismissible fade show';
+    errorAlert.role = 'alert';
+    errorAlert.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+
+    // Ajoute l'alerte au conteneur
+    const errorContainer = document.getElementById('error-container');
+    errorContainer.appendChild(errorAlert);
+
+    // Supprime automatiquement le message après 5 secondes
+    setTimeout(() => {
+        errorAlert.remove();
+    }, 5000);
 }
+
+
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', fetchLatestNews);
