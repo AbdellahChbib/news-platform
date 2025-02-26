@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Premium</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            min-height: 100vh;
+        }
+        
+        .glass-container {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            transform: rotate(45deg);
+        }
+        
+        .data-item {
+            padding: 1.2rem;
+            margin: 0.8rem 0;
+            background: rgba(99, 102, 241, 0.03);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .data-item:hover {
+            transform: translateY(-2px);
+            background: var(--glass);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+        }
+        
+        .dynamic-progress {
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(99, 102, 241, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .dynamic-progress::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: calc(192 / (192 + 25) * 100%);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            animation: progress 1s ease-out;
+        }
+        
+        @keyframes progress {
+            from { width: 0 }
+            to { width: calc(192 / (192 + 25) * 100%) }
+        }
+        
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--primary);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .tag-chip {
+            padding: 0.5em 1em;
+            border-radius: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            transition: all 0.3s;
+        }
+    </style>
+</head>
+<body class="p-4">
+
+<div class="glass-container">
+    <!-- En-tête -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1><i class="fas fa-gem me-2"></i>Article Premium</h1>
+            <div class="theme-switcher">
+                <button class="btn btn-sm btn-light shadow-sm rounded-pill" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="container-fluid">
+        <!-- En-tête utilisateur -->
+        <div class="row align-items-center mb-4">
+            <div class="col-auto">
+                <div class="user-avatar shadow-sm">
+                    <img src="https://api.dicebear.com/7.x/identicon/svg?seed=User121" 
+                         alt="Avatar" 
+                         class="rounded-circle"
+                         width="45"
+                         height="45">
+                </div>
+            </div>
+            <div class="col">
+                <h5 class="mb-0">User #121</h5>
+                <span class="text-muted">Membre Premium</span>
+            </div>
+            <div class="col-auto">
+                <div class="badge bg-light text-primary rounded-pill">
+                    <i class="fas fa-star me-1"></i>Pro
+                </div>
+            </div>
+        </div>
+
+        <!-- Grille de contenu -->
+        <div class="row g-4">
+            <!-- Colonne gauche -->
+            <div class="col-md-6">
+                <!-- Carte d'identité -->
+                <div class="data-item">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-primary-soft p-2 rounded-circle">
+                            <i class="fas fa-id-card text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Identifiant Unique</h6>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-primary">#1</span>
+                                <i class="fas fa-copy text-muted cursor-pointer"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Métriques d'engagement -->
+                <div class="data-item">
+                    <h6 class="mb-3"><i class="fas fa-chart-line me-2"></i>Performance</h6>
+                    <div class="dynamic-progress mb-2"></div>
+                    <div class="d-flex justify-content-between text-sm">
+                        <span class="text-success">
+                            <i class="fas fa-thumbs-up"></i> 192 (88.5%)
+                        </span>
+                        <span class="text-danger">
+                            <i class="fas fa-thumbs-down"></i> 25 (11.5%)
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne droite -->
+            <div class="col-md-6">
+                <!-- Tags interactifs -->
+                <div class="data-item">
+                    <h6 class="mb-3"><i class="fas fa-tags me-2"></i>Mots-clés</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div class="tag-chip">
+                            <i class="fas fa-history me-1"></i>history
+                        </div>
+                        <div class="tag-chip">
+                            <i class="fas fa-flag-usa me-1"></i>american
+                        </div>
+                        <div class="tag-chip">
+                            <i class="fas fa-gavel me-1"></i>crime
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistiques -->
+                <div class="data-item">
+                    <h6 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Statistiques</h6>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <div class="bg-primary-soft p-2 rounded-circle">
+                                    <i class="fas fa-eye text-primary"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-muted">Vues</div>
+                                    <div class="h6 mb-0">305</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <div class="bg-primary-soft p-2 rounded-circle">
+                                    <i class="fas fa-share-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-muted">Partages</div>
+                                    <div class="h6 mb-0">48</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu de l'article -->
+        <div class="data-item mt-4">
+            <h4 class="mb-3"><i class="fas fa-file-alt me-2"></i>Contenu</h4>
+            <div class="article-content">
+                <p class="text-muted" style="line-height: 1.7; text-align: justify;">
+                    His mother had always taught him not to ever think of himself as better than others...
+                </p>
+            </div>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="d-flex gap-2 mt-4 justify-content-end">
+            <button type="button" class="btn btn-outline-primary rounded-pill px-4">
+                <i class="fas fa-print me-2"></i>Imprimer
+            </button>
+            <button type="button" class="btn btn-primary rounded-pill px-4">
+                <i class="fas fa-download me-2"></i>Exporter
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/news.js"></script>
+<script src="./js/main.js"></script>
+
+</body>
+</html>

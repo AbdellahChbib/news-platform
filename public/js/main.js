@@ -29,18 +29,21 @@ function displayNews(news) {
         const card = `
             <div class="col-md-6 mb-4">
                 <div class="card shadow p-3 mb-5 bg-body-tertiary rounded fade-in">
-                    <img src="${article.thumbnail || 'https://via.placeholder.com/150'}" 
+                    <img src="${article.thumbnail || 'https://picsum.photos/seed/${article.id}/300/200'}" 
                          class="card-img-top" 
                          alt="${article.title}">
                     <div class="card-body">
                         <h5 class="card-title">${article.title}</h5>
                         <p class="card-text">${article.excerpt || article.body.slice(0, 100)}...</p>
-                        <button class="btn btn-primary btn-sm" onclick="viewArticle(${article.id})">
-                            Lire plus
-                        </button>
+                        <div class="theme-switcher">
+                            <a href= "../news.html">
+                                <button type="button" class="btn btn-primary btn-lg rounded-pill px-4 shadow-lg" 
+                                    data-bs-toggle="modal">
+                                    <i class="fas fa-sparkles me-2"></i>Afficher les détails
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>
         `;
 
         // Ajouter la card au conteneur
@@ -48,9 +51,8 @@ function displayNews(news) {
     });
 }
 
-// Fonction pour afficher les détails d'un article
-function viewArticle(articleId) {
-    alert(`Détails de l'article ID : ${articleId}`);
+// Fonction pour afficher les détails d'un article dans un modal
+function viewArticle() {
 }
 
 
